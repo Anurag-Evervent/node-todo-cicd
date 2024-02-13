@@ -1,26 +1,33 @@
 pipeline {
     agent any
-    
+
     stages {
-        stage('SCM Checkout A') {
+        stage('Pull Code') {
             steps {
-                echo 'SCM'
-                git url: 'https://github.com/Anurag-Evervent/node-todo-cicd.git'
+                // Checkout code from the GitHub repository
+                checkout([$class: 'GitSCM', branches: [[name: '*/Development']], 
+                          userRemoteConfigs: [[url: 'https://github.com/Anurag-Evervent/node-todo-cicd.git']]])
             }
         }
 
-        stage('Build') {
+        stage('Install Dependencies') {
             steps {
-                // Build
-                sh 'npm i -f'
+                // Run npm install with --force flag
+                sh 'npm install -f'
             }
         }
 
-        stage('Deploy') {
+        stage('Start Application') {
             steps {
-                // Start Node.js application using PM2
+                // Assuming pm2 is installed globally, you can directly start the application
                 sh 'pm2 start app.js'
             }
+        }
+    }
+
+    post {
+        always {
+            // Clean up resources or do any other necessary post-processing steps
         }
     }
 }
