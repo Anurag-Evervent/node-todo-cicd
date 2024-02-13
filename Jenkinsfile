@@ -12,13 +12,13 @@ pipeline {
         stage('Build') {
             steps {
                 // Install npm dependencies
-                sh 'npm i -f'
+                sh 'npm install'
             }
         }
 
         stage('Deploy') {
             steps {
-                /// run pm2 
+                // Start Node.js application using PM2
                 sh 'pm2 start app.js'
             }
         }
