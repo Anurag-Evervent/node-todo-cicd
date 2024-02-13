@@ -28,6 +28,7 @@ pipeline {
     post {
         always {
             // Clean up resources or do any other necessary post-processing steps
+            echo "Pipeline execution completed."
         }
     }
 }
