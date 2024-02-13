@@ -11,8 +11,8 @@ pipeline {
 
         stage('Build') {
             steps {
-                // Install npm dependencies
-                sh 'npm install'
+                // Build
+                sh 'npm i -f'
             }
         }
 
