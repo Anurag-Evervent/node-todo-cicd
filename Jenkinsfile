@@ -18,7 +18,7 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                // run pm2 
+                /// run pm2 
                 sh 'pm2 start app.js'
             }
         }
